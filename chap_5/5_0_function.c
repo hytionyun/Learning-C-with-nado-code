@@ -3,6 +3,8 @@
 //1. 함수 선언 : 이런 함수를 쓸거야
 void p(int num); // 반환형 함수명(전달값);
 /*반환형이 void일 경우 아무것도 반환하지 않겠다.*/
+/*이때 들어가는 num은 매개변수(parameter)임.*/
+
 
 int main (void){
     int num = 2;
