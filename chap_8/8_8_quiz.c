@@ -1,35 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int stuffArray[3][4]; //자판기에 저장된 상품
-char * stuffLocate[13];
+int stuffArray[3][4]; //자판기에 저장된 상품지도, 전역변수로 선언된 배열은 초기화 필요 없음
+char * stuffLocate[13]; //상품 이름 12개를 메모리 공간에 저장(%12s, *stuffLocate[0]), 포인터 배열엔 시작 주소 저장(%p, stuffLocate[0])
 
-void initStuffArray(void);
-void nameStuff(void);
-void locateStuff(void);
-int conv_x_pos(int x);
+void nameStuff(void); //stuffLocate의 인덱스에  상품 이름 나타내는 번호 저장
+void locateStuff(void); //상품 지도의 좌표 -> 상품 번호로 변환
+int conv_x_pos(int x); // 0/4 == 0, 0%4 == 0 ... 11/4 == 2, 11%4 == 3
 int conv_y_pos(int y);
-void printStuff(void);
-void questionStuff(void);
+void printStuff(void); //좌표->값으로 변환된 stuffArray를 이용해 '상품 번호. 이름' 출력
+void questionStuff(void); //상품 구매 및 오류처리 부분
 
 int main(void)
 {   
-    initStuffArray();
     nameStuff();
     locateStuff();
     printStuff();
     questionStuff();
     return 0;
-}
-
-void initStuffArray(void){
-    for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			stuffArray[i][j] = -1 ;
-		}
-	}
 }
 
 void nameStuff(void)
@@ -75,7 +63,7 @@ void printStuff(void)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			printf("%d. %-12s", stuffArray[i][j]+1, stuffLocate[stuffArray[i][j]]);
+			printf("%d. %-12s", stuffArray[i][j]+1, stuffLocate[stuffArray[i][j]]); //좌표->값으로 변환된 stuffArray를 이용해 '상품 번호. 이름' 출력
 		}
 		printf("\n");
 	}
